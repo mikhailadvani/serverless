@@ -1,0 +1,4 @@
+rds_config.py
+pymysql
+PyMySQL*
+*.pyc
