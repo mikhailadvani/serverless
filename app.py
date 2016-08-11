@@ -34,17 +34,17 @@ def handler(event, context):
     with conn.cursor() as cur:
         cur.execute("drop table Employee3")
         cur.execute("create table Employee3 ( EmpID  int NOT NULL, Name varchar(255) NOT NULL, PRIMARY KEY (EmpID))")
-        cur.execute('insert into Employee3 (EmpID, Name) values(1, "Joe")')
-        cur.execute('insert into Employee3 (EmpID, Name) values(2, "Bob")')
-        cur.execute('insert into Employee3 (EmpID, Name) values(3, "Mary")')
+        data = event
+        for user in data['users']:
+            sql = "INSERT INTO `Employee3` (`EmpID`, `Name`) VALUES (%s, %s)"
+            cur.execute(sql, (user['id'], user['name']))
         conn.commit()
         cur.execute("select * from Employee3")
         for row in cur:
             item_count += 1
             logger.info(row)
-            print(row)
 
 
     return "Added %d items from RDS MySQL table" %(item_count)
 
-handler("","")
+handler({"users": [{"id":4, "name": "David"}]},"")
