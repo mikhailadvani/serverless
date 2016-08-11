@@ -9,7 +9,7 @@ Setup
 ---
 
 1. Clone the repository
-2. Install PyMySQL in the repository directory using `pip install PyMySQL -t .`
+2. Install PyMySQL in the repository directory using `pip install PyMySQL -t .` In case you need to install pip or easy_install, use `sudo easy_install pip` or `curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python`
 3. Create a file rds_config.py with variables
     - db_username
     - db_password
